@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+}
+
+dependencies {
+    implementation 'org.reflections:reflections:0.9.11'
+    implementation 'javax.inject:javax.inject:1'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+repositories {
+    jcenter()
+}
