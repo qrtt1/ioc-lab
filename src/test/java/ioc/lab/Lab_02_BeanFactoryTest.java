@@ -8,7 +8,7 @@ import org.junit.Test;
 import test.example.FooBar;
 import test.example.sub.FooBarbar;
 
-public class BeanFactoryTest {
+public class Lab_02_BeanFactoryTest {
 
     @Test
     public void test() {
