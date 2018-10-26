@@ -9,4 +9,6 @@ gradlew.bat
 *.iml
 .idea
 out
+*.ipr
+*.iws
 
