@@ -2,15 +2,15 @@ package ioc.lab;
 
 public class BeanDefinition {
 
-    private Class<?> clazz;
+    private Class<?> beanClass;
     private String name;
 
-    public Class<?> getClazz() {
-        return clazz;
+    public Class<?> getBeanClass() {
+        return beanClass;
     }
 
-    public void setClazz(Class<?> clazz) {
-        this.clazz = clazz;
+    public void setBeanClass(Class<?> beanClass) {
+        this.beanClass = beanClass;
     }
 
     public String getName() {
