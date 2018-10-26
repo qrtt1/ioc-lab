@@ -8,4 +8,5 @@ gradlew
 gradlew.bat
 *.iml
 .idea
+out
 
