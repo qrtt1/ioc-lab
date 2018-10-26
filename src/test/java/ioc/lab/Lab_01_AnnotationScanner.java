@@ -23,7 +23,7 @@ public class Lab_01_AnnotationScanner {
     public void findAnnotations() throws Exception {
         Map<String, BeanDefinition> annotatedClasses = scanner.findAnnotatedClasses();
         assertSame(annotatedClasses.get("fooBar").getBeanClass(), FooBar.class);
-        assertSame(annotatedClasses.get("fooBarBar").getBeanClass(), FooBarbar.class);
+        assertSame(annotatedClasses.get("fooBarbar").getBeanClass(), FooBarbar.class);
         assertSame(annotatedClasses.get("message").getBeanClass(), String.class);
     }
 
