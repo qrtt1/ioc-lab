@@ -54,7 +54,7 @@ public class AnnotationScanner {
 
     }
 
-    private String toBeanName(Class<?> clazz) {
+    public String toBeanName(Class<?> clazz) {
         StringBuilder sb = new StringBuilder(clazz.getSimpleName());
         sb.setCharAt(0, Character.toLowerCase(sb.charAt(0)));
         return sb.toString();

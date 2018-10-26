@@ -29,4 +29,13 @@ public class BeanDefinition {
     public BeanDefinition getDependsOn() {
         return dependsOn;
     }
+
+    @Override
+    public String toString() {
+        return "BeanDefinition{" +
+                "beanClass=" + beanClass +
+                ", name='" + name + '\'' +
+                ", dependsOn=" + dependsOn +
+                '}';
+    }
 }
