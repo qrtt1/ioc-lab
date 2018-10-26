@@ -4,6 +4,7 @@ public class BeanDefinition {
 
     private Class<?> beanClass;
     private String name;
+    private BeanDefinition dependsOn;
 
     public Class<?> getBeanClass() {
         return beanClass;
@@ -21,4 +22,11 @@ public class BeanDefinition {
         this.name = name;
     }
 
+    public void setDependsOn(BeanDefinition dependsOn) {
+        this.dependsOn = dependsOn;
+    }
+
+    public BeanDefinition getDependsOn() {
+        return dependsOn;
+    }
 }
