@@ -24,4 +24,7 @@ public class FooBar {
         return "富爸爸";
     }
 
+    public FooBarbar getFooBarbar() {
+        return fooBarbar;
+    }
 }

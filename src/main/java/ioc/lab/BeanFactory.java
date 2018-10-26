@@ -26,6 +26,8 @@ public class BeanFactory {
 
     private void createdManagedComponents() {
         // 實作掃瞄 @Component 的類別，並建立相關物件
+        // reflection api
+        // class constructor, parameter,
     }
 
     private void createManagedBeans() {

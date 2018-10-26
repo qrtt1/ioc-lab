@@ -1,10 +1,18 @@
 package ioc.lab;
 
+import ioc.lab.annotation.Component;
+import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class AnnotationScanner {
 
+    // businessObject
+    // appConfig
     Map<String, BeanDefinition> definitions = new HashMap<>();
 
     public AnnotationScanner(String basePackage) {
@@ -24,5 +32,16 @@ public class AnnotationScanner {
         // bean 的名稱，若是 factory method 來的，那就是它的 method name
         // 若是 @Component 來的，那就是它的 class name
         return null;
+    }
+
+    public static void main(String[] args) {
+
+        Reflections reflections = new Reflections("example",
+                new MethodAnnotationsScanner(), new TypeAnnotationsScanner(),
+        new SubTypesScanner());
+
+        System.out.println(reflections.getTypesAnnotatedWith(Component.class));
+
+
     }
 }
