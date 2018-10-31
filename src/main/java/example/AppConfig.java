@@ -12,9 +12,10 @@ public class AppConfig {
         return new FloppyWriter();
     }
 
+    // 由於目前的實作，建構子要抓到的 bean name 為 iDeviceWriter，我們修了 method 名稱
     @Bean
-    public IDeviceWriter usbWriter() {
-        return new FloppyWriter();
+    public IDeviceWriter iDeviceWriter() {
+        return new UsbDiskWriter();
     }
 
     public static void main(String[] args) {

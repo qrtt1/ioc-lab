@@ -27,13 +27,13 @@ public class BeanFactory {
         createManagedBeans();
     }
 
+
+    List<BeanDefinition> unresolved = new ArrayList<>();
+
     private void createdManagedComponents() {
         // 實作掃瞄 @Component 的類別，並建立相關物件
         // reflection api
         // class constructor, parameter,
-
-        List<BeanDefinition> unresolved = new ArrayList<>();
-
         annotationScanner.definitions.values().stream().forEach(beanDefinition -> {
             if (beanDefinition.getDependsOn() == null) {
                 Constructor[] constructors = beanDefinition.getBeanClass().getConstructors();
@@ -53,14 +53,31 @@ public class BeanFactory {
             }
         });
 
+        resolve();
+
+    }
+
+    private void resolve() {
+        List<BeanDefinition> stillUnresolved = new ArrayList<>();
         unresolved.stream().forEach(beanDefinition -> {
             Constructor[] constructors = beanDefinition.getBeanClass().getConstructors();
             Class[] parameterTypes = constructors[0].getParameterTypes();
             List<Object> parameters = Arrays.stream(parameterTypes).map(
-                    c -> container.get(annotationScanner.toBeanName(c))).collect(Collectors.toList());
+                    c -> {
+                        String name = annotationScanner.toBeanName(c);
+                        Object o = container.get(name);
+                        if (o == null) {
+                            System.out.println("Cannot resolve bean by name: " + name);
+                            stillUnresolved.add(beanDefinition);
+                        }
+                        return o;
+                    }
+            ).collect(Collectors.toList());
 
             try {
-                container.put(beanDefinition.getName(), constructors[0].newInstance(parameters.toArray()));
+                if (!stillUnresolved.contains(beanDefinition)) {
+                    container.put(beanDefinition.getName(), constructors[0].newInstance(parameters.toArray()));
+                }
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -70,6 +87,7 @@ public class BeanFactory {
             }
         });
 
+        unresolved = unresolved.stream().filter(b -> stillUnresolved.contains(b)).collect(Collectors.toList());
     }
 
     private void createManagedBeans() {
@@ -91,6 +109,7 @@ public class BeanFactory {
                 }
             }
         });
+        resolve();
     }
 
     /**
